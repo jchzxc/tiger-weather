@@ -1,0 +1,9 @@
+<litepal>
+    <dbname value="tiger_weather" />
+    <version value="2" />
+    <list>
+        <mapping class="org.tiger.practice.tigerweather.db.Province" />
+        <mapping class="org.tiger.practice.tigerweather.db.City" />
+        <mapping class="org.tiger.practice.tigerweather.db.Country" />
+    </list>
+</litepal>
