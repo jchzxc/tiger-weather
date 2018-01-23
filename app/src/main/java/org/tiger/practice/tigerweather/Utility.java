@@ -3,12 +3,15 @@ package org.tiger.practice.tigerweather;
 import android.text.TextUtils;
 import android.util.Log;
 
+import com.google.gson.Gson;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.tiger.practice.tigerweather.db.City;
 import org.tiger.practice.tigerweather.db.Country;
 import org.tiger.practice.tigerweather.db.Province;
+import org.tiger.practice.tigerweather.gson.Weather;
 
 import okhttp3.Callback;
 import okhttp3.OkHttpClient;
@@ -88,6 +91,22 @@ public class Utility {
         } catch (JSONException e) {
             e.printStackTrace();
             return false;
+        }
+    }
+
+    public static Weather procWeatherResponse(String response) {
+        if (TextUtils.isEmpty(response)) {
+            return null;
+        }
+
+        try {
+            JSONObject top = new JSONObject(response);
+            JSONArray weathers = top.getJSONArray("HeWeather6");
+            String first = weathers.getJSONObject(0).toString();
+            return new Gson().fromJson(first, Weather.class);
+        } catch (JSONException e) {
+            e.printStackTrace();
+            return null;
         }
     }
 }

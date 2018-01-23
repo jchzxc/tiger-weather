@@ -1,6 +1,7 @@
 package org.tiger.practice.tigerweather;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -83,6 +84,11 @@ public class ChooseAreaFragment extends Fragment {
                 } else if (mCurrLevel == LEVEL_CITY) {
                     mCurrCity = mCities.get(position);
                     queryCountries();
+                } else if (mCurrLevel == LEVEL_COUNTRY) {
+                    mCurrCountry = mCountries.get(position);
+                    Intent intent = new Intent(getActivity(), WeatherActivity.class);
+                    intent.putExtra("weather_id", mCurrCountry.weatherId);
+                    startActivity(intent);
                 }
             }
         });
